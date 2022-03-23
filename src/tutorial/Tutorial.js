@@ -103,12 +103,16 @@ class Game extends React.Component {
 			);
 		});
 
+		if (this.state.historyDesc) {
+			moves.reverse();
+		}
+
 		let status;
 		if (winner) {
-			status = "Winner: " + winner;
+			status = <h2>{"Winner: " +winner}</h2>;
 		} else {
 			if (this.state.stepNumber === 9) {
-				status = 'Equal'
+				status = <h2>Equal</h2>
 			} else {
 				status = "Next player: " + (this.state.xIsNext ? "X" : "O");
 			}
@@ -126,7 +130,6 @@ class Game extends React.Component {
 				<div className="game-info">
 					<div>{status}</div>
 					<button onClick={() => this.handleSortClick()}>Reserve</button>
-					<div>{String(this.state.historyDesc)}</div>
 					<ol>{moves}</ol>
 				</div>
 			</div>
